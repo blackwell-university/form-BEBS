@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios - Blackwell University</title>
+    <link rel="icon" type="image/png" href="https://cdn.bitrix24.es/b15495391/landing/e79/e79fb239ff37e96e3340ef1ed8782f6c/Logotipo-Blackwell_1x.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        body {
+            font-family: 'Source Serif Pro', serif;
+            background-image: url('https://campus.blackwell.university/pluginfile.php/1/theme_alpha/loginbg/1731598420/portada-campus-virtual.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-container img {
+            max-width: 150px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 1200px; /* Más ancho */
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        #formsContainer {
+            background-color: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1200px; /* Más ancho */
+            padding: 20px;
+        }
+
+        .form-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+
+        .form-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .form-item h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .form-item p {
+            font-size: 0.8rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .btn-ir {
+            background-color: #007bff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-ir:hover {
+            background-color: #0056b3;
+        }
+
+        .form-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Estilos para el frame */
+        #formFrameContainer {
+            width: 100%;
+            max-width: 1600px; /* Más ancho */
+            height: 900px; /* Más alto */
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: none; /* Oculto por defecto */
+        }
+
+        #formFrame {
+            width: 100%;
+            height: 100%; /* Ocupa todo el alto del contenedor */
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Animación de salto */
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .jumping-dino {
+            width: 80px; /* Tamaño de la imagen */
+            height: auto;
+            animation: jump 0.5s ease-in-out infinite; /* Animación de salto */
+        }
+
+        /* Barra de progreso */
+        .swal2-progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .swal2-progress-bar-inner {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50; /* Color verde */
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo de Blackwell University -->
+    <div class="logo-container">
+        <img src="https://campus.blackwell.university/pluginfile.php/1/theme_alpha/customlogindmlogo/1731598420/logo-campus-virtual.png" alt="Logo de Blackwell University">
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar formulario..." oninput="filterForms()">
+    </div>
+
+    <!-- Contenedor de formularios -->
+    <div id="formsContainer">
+        <!-- Formulario 1: Admission Application Form BGU with Grant BEBS -->
+        <div class="form-item" data-name="Admission Application Form BGU with Grant">
+            <div>
+                <h3>Formulario 1: Admission Application Form BGU with Grant BEBS</h3>
+                <p>Haga clic en "Ir" para abrir este formulario.</p>
+            </div>
+            <button class="btn-ir" onclick="openForm('https://signnow.com/s/nlhlWhSN')">Ir</button>
+        </div>
+
+        <!-- Formulario 2: Student Admissions Acceptance Letter (Oculto) -->
+        <div class="form-item" data-name="Student Admissions Acceptance Letter" style="display: none;">
+            <div>
+                <h3>Formulario 2: Student Admissions Acceptance Letter</h3>
+                <p>Haga clic en "Ir" para abrir este formulario.</p>
+            </div>
+            <button class="btn-ir" onclick="openForm('https://signnow.com/s/UqWBFgxD')">Ir</button>
+        </div>
+
+        <!-- Formulario 3: Grant Scholarship Letter (Oculto) -->
+        <div class="form-item" data-name="Grant Scholarship Letter" style="display: none;">
+            <div>
+                <h3>Formulario 3: Grant Scholarship Letter</h3>
+                <p>Haga clic en "Ir" para abrir este formulario.</p>
+            </div>
+            <button class="btn-ir" onclick="openForm('https://signnow.com/s/xh5EK2qm')">Ir</button>
+        </div>
+
+        <!-- Formulario 4: Language Proficiency Acceptance Letter (Oculto) -->
+        <div class="form-item" data-name="Language Proficiency Acceptance Letter" style="display: none;">
+            <div>
+                <h3>Formulario 4: Language Proficiency Acceptance Letter</h3>
+                <p>Haga clic en "Ir" para abrir este formulario.</p>
+            </div>
+            <button class="btn-ir" onclick="openForm('https://signnow.com/s/qyJc4uY9')">Ir</button>
+        </div>
+
+        <!-- Formulario 5: Enrollment Agreement (Oculto) -->
+        <div class="form-item" data-name="Enrollment Agreement" style="display: none;">
+            <div>
+                <h3>Formulario 5: Enrollment Agreement</h3>
+                <p>Haga clic en "Ir" para abrir este formulario.</p>
+            </div>
+            <button class="btn-ir" onclick="openForm('https://signnow.com/s/i1ktLhxJ')">Ir</button>
+        </div>
+    </div>
+
+    <!-- Contenedor del frame -->
+    <div id="formFrameContainer">
+        <iframe id="formFrame" src="" title="Formulario"></iframe>
+    </div>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Función para filtrar los formularios según el título
+        function filterForms() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase(); // Texto de búsqueda en minúsculas
+            const forms = document.querySelectorAll('.form-item'); // Todos los formularios
+
+            forms.forEach(form => {
+                const formTitle = form.querySelector('h3').textContent.toLowerCase(); // Título del formulario en minúsculas
+                if (formTitle.includes(searchInput)) {
+                    form.style.display = 'flex'; // Mostrar si coincide
+                } else {
+                    form.style.display = 'none'; // Ocultar si no coincide
+                }
+            });
+        }
+
+        // Función para abrir el formulario en el frame
+        function openForm(url) {
+            const frameContainer = document.getElementById('formFrameContainer');
+            const frame = document.getElementById('formFrame');
+
+            // Mostrar SweetAlert de "Cargando..." con el dinosaurio saltando
+            let timerInterval;
+            Swal.fire({
+                title: 'Cargando...',
+                html: `
+                    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f3ebcf88-7437-4c07-ac43-e6f2b50fb766/dbchihl-d82fbe86-c8a6-4ca9-a719-7eddd7583d11.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2YzZWJjZjg4LTc0MzctNGMwNy1hYzQzLWU2ZjJiNTBmYjc2NlwvZGJjaGlobC1kODJmYmU4Ni1jOGE2LTRjYTktYTcxOS03ZWRkZDc1ODNkMTEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.zgjeB9lHV2MpNOyabvut2Ewj7Vx-oujyeC8MLRSK0sw" 
+                         alt="Dinosaurio saltando" 
+                         class="jumping-dino">
+                    <p>Espere un momento, por favor...</p>
+                    <div class="swal2-progress-bar">
+                        <div class="swal2-progress-bar-inner" id="progress-bar"></div>
+                    </div>
+                `,
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    const progressBar = document.getElementById('progress-bar');
+                    let width = 0;
+                    timerInterval = setInterval(() => {
+                        width += 10;
+                        progressBar.style.width = `${width}%`;
+                        if (width >= 100) {
+                            clearInterval(timerInterval);
+                            Swal.close();
+                            window.open(url, '_blank'); // Abrir el formulario en una nueva pestaña
+                        }
+                    }, 500);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            });
+
+            // Asignar la URL al frame
+            frame.src = url;
+
+            // Mostrar el contenedor del frame si estaba oculto
+            frameContainer.style.display = 'block';
+
+            // Desplazar la pantalla hacia el frame
+            frameContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
